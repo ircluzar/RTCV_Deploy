@@ -1,0 +1,16 @@
+Welcome to the Windows Glitch Harvester
+Legacy edition
+Version [ver]
+
+Disclaimer:
+This program comes with absolutely ZERO warranty.
+You may use it at your own risk.
+
+The Windows Glitch Harvester is distributed under an MIT Licence. Source is available at https://github.com/ircluzar/WGH
+
+Known facts(and warnings):
+- Can cause irreparable damage to your data if misused (e.g. corrupting core Windows files)
+- Can cause windows to BSOD (extremely rarely)
+- Can write a significant amount of data to your hard drive depending on usage
+
+This message only appears once.

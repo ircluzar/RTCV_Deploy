@@ -1,0 +1,95 @@
+// Lines that start with two forward slashes are not evaluated and are comments or commented lines.
+// Empty lines are ignored and comments can also be left at the end of a line.
+
+// If this file is named _CustomLayout.txt, you must rename it to CustomLayout.txt and restart RTC
+
+GridName:Custom Layout
+GridSize:26,19 //This determines the size of the area used for controls
+
+CreateGrid //Don't remove this, IsResizable goes after if needed
+IsResizable //Having this allows the form to be resized (only with External)
+
+///////------------ How SetTileForm works: --------------------
+//
+// First parameter is the Form name. This corresponds to an assembly type in the program.
+// Next four parameters are: X Grid Position, Y Grid Position, Width, Height
+// The grid uses its own units of measurement
+
+// A fifth optional parameter is for scaling the component with the form if External
+// This is an AnchorStyles Enum. it works by adding the value together.
+//
+//// AnchorStyles.Top = 1,
+//// AnchorStyles.Bottom = 2,
+//// AnchorStyles.Left = 4,
+//// AnchorStyles.Right = 8
+//
+// If you want Top & Left, you add them together so you end up with 5.
+
+// Available forms listed down here.
+// Take note that forms with "One size only" can still be bigger but will not scale up
+
+// RTC_GeneralParameters_Form
+// Has the Intensity, Error Delay and Blast Radius
+// Minimum size: 5,5
+
+// RTC_CorruptionEngine_Form
+// Has the corruption engine settings
+// One size only: 10,5
+
+// RTC_MemoryDomains_Form
+// Has the Memory Domains and loaded VMDs
+// Minimum size: 5,7
+
+// MemoryTools 
+// Has the various panels for Advanced Memory Tools
+// One size only: 10,7
+
+// RTC_GlitchHarvesterBlast_Form
+// Has the GH Blast tools such as Corrupt, Send Raw to Stash, etc
+// One size only: 4,4
+
+// RTC_SavestateManager_Form
+// Has the GH savestates
+// One size only: 4,8
+
+// RTC_StashHistory_Form
+// Has the Glitch Harvester Stash History
+// Minimum size: 5,5
+
+// RTC_StockpileManager_Form
+// Has the Glitch Harvester Stockpile Manager
+// Minimum size: 11,12
+
+// RTC_StockpilePlayer_Form
+// Has the Stockpile Player
+// Minimum size: 15,12
+
+// RTC_Settings_Form
+// Has the settings
+// Minimum size: 15,12
+
+// RTC_GlitchHarvesterIntensity_Form
+// Has one Intensity slider
+// Minimum size: 5,3
+
+// Individual Advanced Memory Tools
+// RTC_ListGen_Form
+// RTC_VmdAct_Form
+// RTC_VmdGen_Form
+// RTC_VmdPool_Form
+// One size only: 10,7
+
+/------------------------------------------| Pos X | Pos Y | Size X | Size Y | Anchor |---------
+SetTileForm:RTC_GeneralParameters_Form,		0,	0,	5,	5
+SetTileForm:RTC_CorruptionEngine_Form,		5,	0,	10,	5
+SetTileForm:RTC_MemoryDomains_Form,     	0,	5,	5,	14,	7
+SetTileForm:MemoryTools,                	15,	0,	11,	7
+SetTileForm:RTC_GlitchHarvesterBlast_Form, 	5, 	5, 	4, 	4
+SetTileForm:RTC_SavestateManager_Form, 		5, 	9, 	4, 	10,	7
+SetTileForm:RTC_StashHistory_Form, 		9, 	5, 	6, 	14, 	7
+SetTileForm:RTC_StockpileManager_Form, 		15, 	7, 	11, 	12,	15
+
+LoadTo:External // You can load to Main or to External (External makes a new window)
+
+
+
