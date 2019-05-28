@@ -14,7 +14,7 @@ namespace Deploy
         {
 
             string currentDir = Directory.GetCurrentDirectory();
-            string projectsDir = new DirectoryInfo(currentDir).Parent.Parent.Parent.Parent.FullName;
+            string projectsDir = new DirectoryInfo(currentDir).Parent.Parent.FullName;
 
             string InputDir = Path.Combine(currentDir, "INPUT");
             string OutputDir = Path.Combine(currentDir, "OUTPUT");
