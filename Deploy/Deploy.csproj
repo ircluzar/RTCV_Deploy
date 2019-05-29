@@ -100,6 +100,10 @@
       <Project>{3e59fb86-7a25-4310-a62a-97de5aa32528}</Project>
       <Name>WindowsGlitchHarvester</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\WinVolumeLimiter\WinVolumeLimiter\WinVolumeLimiter.csproj">
+      <Project>{39edcf46-c40e-45cf-9186-e421b7d2b197}</Project>
+      <Name>WinVolumeLimiter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

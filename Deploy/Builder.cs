@@ -103,13 +103,13 @@ namespace RTCV.Deploy
                 //    initials = "DV",
                 //    pathFromProjectsToBuild = @"UnityStub-Vanguard\UnityStub\bin\x64\Debug"
                 //},
-                //new BuildParams()
-                //{
-                //    productName = "WindowsVolumeLimiter",
-                //    version = "012",
-                //    initials = "WVL",
-                //    pathFromProjectsToBuild = @"UnityStub-Vanguard\UnityStub\bin\x64\Debug"
-                //},
+                new BuildParams()
+                {
+                    productName = "WinVolumeLimiter",
+                    version = "012",
+                    initials = "WVL",
+                    pathFromProjectsToBuild = @"WinVolumeLimiter\WinVolumeLimiter\bin\Release"
+                },
             };
         }
         public static void BuildAll()

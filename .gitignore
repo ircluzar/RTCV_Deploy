@@ -3,4 +3,5 @@ packages/*
 */obj/*
 */bin/*
 Build/*
+!Build/ASSETS**
 !Build/Deploy**
