@@ -53,6 +53,35 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Bizhawk-Vanguard\Real-Time Corruptor\BizHawk_RTC\BizHawk.Client.EmuHawk\BizHawk.Client.EmuHawk.csproj">
+      <Project>{dd448b37-ba3f-4544-9754-5406e8094723}</Project>
+      <Name>BizHawk.Client.EmuHawk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CemuStub-Vanguard\CemuStub\CemuStub.csproj">
+      <Project>{2acb6ee7-df56-4b84-857c-535f75ce0ca8}</Project>
+      <Name>CemuStub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FileStub-Vanguard\FileStub\FileStub.csproj">
+      <Project>{3e02b2ba-0900-4bcf-a416-821c949e6c85}</Project>
+      <Name>FileStub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RTCV\Source\Launcher\RTC_Launcher\RTC_Launcher.csproj">
+      <Project>{af5ffa87-1bec-4083-8c81-07d1b52fdf3a}</Project>
+      <Name>RTC_Launcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RTCV\Source\Libraries\CorruptCore\CorruptCore.csproj">
+      <Project>{b5633a86-dc66-4723-88eb-7dfc95458072}</Project>
+      <Name>CorruptCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UnityStub-Vanguard\UnityStub\UnityStub.csproj">
+      <Project>{5dbf00a3-4657-4102-94ca-fe69f461be82}</Project>
+      <Name>UnityStub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WGH\WindowsGlitchHarvester\WindowsGlitchHarvester.csproj">
+      <Project>{3e59fb86-7a25-4310-a62a-97de5aa32528}</Project>
+      <Name>WindowsGlitchHarvester</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

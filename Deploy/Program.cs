@@ -21,14 +21,16 @@ namespace Deploy
             string AssetsDir = Path.Combine(currentDir, "ASSETS");
             string ZipDir = Path.Combine(currentDir, "ZIP");
 
+            string LauncherBuildExe = Path.Combine(projectsDir, "RTCV","Source","Launcher","RTC_Launcher","bin","Debug", "RTC_Launcher.exe");
+
             foreach (var dir in new string[] { InputDir, OutputDir, AssetsDir, ZipDir })
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
 
-            BuildParams RTCV = new BuildParams()
+            BuildParams RtcvParams = new BuildParams()
             {
                 productName = "RTCV",
-                version = "009",
+                version = NormalizeVersion(RTCV.CorruptCore.RtcCore.RtcVersion),
                 initials = "RTCV",
                 pathFromProjectsToBuild = @"RTCV\Build",
                 BuildDirDeleteDirectories = new string[] { "PARAMS", "TEMP", "TEMP2", }
@@ -39,7 +41,7 @@ namespace Deploy
                 new BuildParams()
                 {
                     productName = "CemuStub",
-                    version = "006",
+                    version = NormalizeVersion(CemuStub.CemuWatch.CemuStubVersion),
                     initials = "CS",
                     pathFromProjectsToBuild = @"CemuStub-Vanguard\CemuStub\bin\x64\Debug",
                     BuildDirDeleteDirectories = new string[]{"PARAMS","TEMP","TEMP2",}
@@ -48,7 +50,7 @@ namespace Deploy
                 new BuildParams()
                 {
                     productName = "FileStub",
-                    version = "005",
+                    version = NormalizeVersion(FileStub.FileWatch.FileStubVersion),
                     initials = "FS",
                     pathFromProjectsToBuild = @"FileStub-Vanguard\FileStub\bin\x64\Debug",
                     BuildDirDeleteDirectories = new string[]{"PARAMS","TEMP","TEMP2",}
@@ -56,7 +58,7 @@ namespace Deploy
                 new BuildParams()
                 {
                     productName = "UnityStub",
-                    version = "001",
+                    version = NormalizeVersion(UnityStub.UnityWatch.UnityStubVersion),
                     initials = "US",
                     pathFromProjectsToBuild = @"UnityStub-Vanguard\UnityStub\bin\x64\Debug",
                     BuildDirDeleteDirectories = new string[]{"PARAMS","TEMP","TEMP2",}
@@ -64,7 +66,7 @@ namespace Deploy
                 new BuildParams()
                 {
                     productName = "Bizhawk-Vanguard",
-                    version = "005",
+                    version = NormalizeVersion(RTCV.BizhawkVanguard.VanguardCore.BizhawkVanguardVersion),
                     initials = "BV",
                     pathFromProjectsToBuild = @"Bizhawk-Vanguard\Real-Time Corruptor\BizHawk_RTC\output",
                     BuildDirDeleteDirectories = new string[]{"PARAMS","TEMP","TEMP2",}
@@ -72,7 +74,7 @@ namespace Deploy
                 new BuildParams()
                 {
                     productName = "WindowsGlitchHarvester",
-                    version = "098",
+                    version = NormalizeVersion(WindowsGlitchHarvester.WGH_Core.WghVersion),
                     initials = "WGH",
                     pathFromProjectsToBuild = @"WGH\WindowsGlitchHarvester\bin\Debug",
                     BuildDirDeleteDirectories = new string[]{"PARAMS","TEMP","TEMP2",},
@@ -95,7 +97,7 @@ namespace Deploy
             };
 
             List<BuildParams> allTargets = new List<BuildParams>();
-            allTargets.Add(RTCV);
+            allTargets.Add(RtcvParams);
             allTargets.AddRange(secondaryTargets);
 
 
@@ -125,14 +127,14 @@ namespace Deploy
                 Console.WriteLine($"Copy done");
 
                 Console.WriteLine($"Copying {bp.productName} to Output");
-                if (bp == RTCV)
+                if (bp == RtcvParams)
                 {
 
-                    DirectoryInfo DeeperRtcv = new DirectoryInfo(Path.Combine(OutputDir, RTCV.productName, "RTCV"));
+                    DirectoryInfo DeeperRtcv = new DirectoryInfo(Path.Combine(OutputDir, RtcvParams.productName, "RTCV"));
 
                     DirectoryCopy(targetInputPath, DeeperRtcv);
 
-                    DirectoryInfo DeeperRtcvRtc = new DirectoryInfo(Path.Combine(OutputDir, RTCV.productName, "RTCV", "RTC"));
+                    DirectoryInfo DeeperRtcvRtc = new DirectoryInfo(Path.Combine(OutputDir, RtcvParams.productName, "RTCV", "RTC"));
 
                     string emu_log = Path.Combine(DeeperRtcvRtc.FullName, "EMU_LOG.txt");
                     string rtc_log = Path.Combine(DeeperRtcvRtc.FullName, "RTC_LOG.txt");
@@ -144,11 +146,24 @@ namespace Deploy
                         if (File.Exists(file))
                             File.Delete(file);
 
-                    DirectoryInfo DeeperRtcvRtcParams = new DirectoryInfo(Path.Combine(OutputDir, RTCV.productName, "RTCV", "RTC", "PARAMS"));
+                    DirectoryInfo DeeperRtcvRtcParams = new DirectoryInfo(Path.Combine(OutputDir, RtcvParams.productName, "RTCV", "RTC", "PARAMS"));
 
                     if (DeeperRtcvRtcParams.Exists)
                         foreach (var file in DeeperRtcvRtcParams.GetFiles())
                             file.Delete();
+
+                    string LauncherFolder = Path.Combine(OutputDir, RtcvParams.productName, "Launcher");
+                    string LauncherDeployExe = Path.Combine(OutputDir, RtcvParams.productName, "Launcher", "RTC_Launcher.exe");
+                    string LauncherDeployVerIni = Path.Combine(OutputDir, RtcvParams.productName, "Launcher", "ver.ini");
+
+                    if(!Directory.Exists(LauncherFolder))
+                        Directory.CreateDirectory(LauncherFolder);
+
+                    //launcher deploy
+                    if (File.Exists(LauncherBuildExe))
+                        File.Copy(LauncherBuildExe, LauncherDeployExe);
+
+                    File.WriteAllText(LauncherDeployVerIni, RTC_Launcher.MainForm.launcherVer.ToString());
                 }
                 else
                     DirectoryCopy(targetInputPath, targetOutputPath);
@@ -174,7 +189,7 @@ namespace Deploy
                 }
 
 
-                FileInfo[] RtcvOutputRootFiles = new DirectoryInfo(Path.Combine(OutputDir, RTCV.productName, RTCV.productName)).GetFiles();
+                FileInfo[] RtcvOutputRootFiles = new DirectoryInfo(Path.Combine(OutputDir, RtcvParams.productName, RtcvParams.productName)).GetFiles();
 
                 if (bp.dupeDllCleanup)
                 {
@@ -205,6 +220,12 @@ namespace Deploy
             Process.Start(ZipDir);
 
         }
+
+        private static string NormalizeVersion(object bizhawkVanguardVersion)
+        {
+            throw new NotImplementedException();
+        }
+
         public static void DirectoryCopy(DirectoryInfo sourceDir, DirectoryInfo destDir, bool copySubDirs = true)
         {
             string sourceDirName = sourceDir.FullName;
@@ -244,6 +265,9 @@ namespace Deploy
                 }
             }
         }
+
+        public static string NormalizeVersion(int ver) => NormalizeVersion(ver.ToString());
+        public static string NormalizeVersion(string ver) => ver.Replace(".", "");
     }
 
 
