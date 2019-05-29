@@ -43,9 +43,6 @@ namespace RTCV.Deploy
         }
         public static void LoadBuildParams()
         {
-
-
-
             RtcvParams = new BuildParams()
             {
                 productName = "RTCV",
