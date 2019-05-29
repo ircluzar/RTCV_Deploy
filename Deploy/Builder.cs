@@ -59,7 +59,7 @@ namespace RTCV.Deploy
                     productName = "CemuStub",
                     version = NormalizeVersion(CemuStub.CemuWatch.CemuStubVersion),
                     initials = "CS",
-                    pathFromProjectsToBuild = @"CemuStub-Vanguard\CemuStub\bin\x64\Debug",
+                    pathFromProjectsToBuild = @"CemuStub-Vanguard\CemuStub\bin\x64\Release",
                     BuildDirDeleteDirectories = new string[]{"PARAMS","TEMP","TEMP2",}
 
                 },
@@ -68,7 +68,7 @@ namespace RTCV.Deploy
                     productName = "FileStub",
                     version = NormalizeVersion(FileStub.FileWatch.FileStubVersion),
                     initials = "FS",
-                    pathFromProjectsToBuild = @"FileStub-Vanguard\FileStub\bin\x64\Debug",
+                    pathFromProjectsToBuild = @"FileStub-Vanguard\FileStub\bin\x64\Release",
                     BuildDirDeleteDirectories = new string[]{"PARAMS","TEMP","TEMP2",}
                 },
                 new BuildParams()
@@ -76,7 +76,7 @@ namespace RTCV.Deploy
                     productName = "UnityStub",
                     version = NormalizeVersion(UnityStub.UnityWatch.UnityStubVersion),
                     initials = "US",
-                    pathFromProjectsToBuild = @"UnityStub-Vanguard\UnityStub\bin\x64\Debug",
+                    pathFromProjectsToBuild = @"UnityStub-Vanguard\UnityStub\bin\x64\Release",
                     BuildDirDeleteDirectories = new string[]{"PARAMS","TEMP","TEMP2",}
                 },
                 new BuildParams()
@@ -92,7 +92,7 @@ namespace RTCV.Deploy
                     productName = "WindowsGlitchHarvester",
                     version = NormalizeVersion(WindowsGlitchHarvester.WGH_Core.WghVersion),
                     initials = "WGH",
-                    pathFromProjectsToBuild = @"WGH\WindowsGlitchHarvester\bin\Debug",
+                    pathFromProjectsToBuild = @"WGH\WindowsGlitchHarvester\bin\Release",
                     BuildDirDeleteDirectories = new string[]{"PARAMS","TEMP","TEMP2",},
                     dupeDllCleanup = false
                 },
