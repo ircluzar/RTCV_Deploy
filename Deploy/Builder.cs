@@ -186,7 +186,7 @@ namespace RTCV.Deploy
                     if (File.Exists(LauncherBuildExe))
                         File.Copy(LauncherBuildExe, LauncherDeployExe);
 
-                    File.WriteAllText(LauncherDeployVerIni, RTC_Launcher.MainForm.launcherVer.ToString());
+                    File.WriteAllText(LauncherDeployVerIni, RTCV.Launcher.MainForm.launcherVer.ToString());
                 }
                 else
                     Deploy_Extensions.DirectoryCopy(targetInputPath, targetOutputPath);
